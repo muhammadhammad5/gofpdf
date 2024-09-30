@@ -1,10 +1,10 @@
 # GoFPDF document generator
 
 [![MIT
-licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jung-kurt/gofpdf/master/LICENSE)
-[![GoDoc](https://img.shields.io/badge/godoc-GoFPDF-blue.svg)](https://pkg.go.dev/github.com/jung-kurt/gofpdf)
+licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/muhammadhammad5/gofpdf/master/LICENSE)
+[![GoDoc](https://img.shields.io/badge/godoc-GoFPDF-blue.svg)](https://pkg.go.dev/github.com/muhammadhammad5/gofpdf)
 
-![](https://raw.githubusercontent.com/jung-kurt/gofpdf/master/image/logo_gofpdf.jpg)
+![](https://raw.githubusercontent.com/muhammadhammad5/gofpdf/master/image/logo_gofpdf.jpg)
 
 Package gofpdf implements a PDF document generator with high level
 support for text, drawing and images.
@@ -49,13 +49,13 @@ page encodings for languages that have fewer than 256 glyphs.
 To install the package on your system, run
 
 ``` shell
-go get github.com/jung-kurt/gofpdf
+go get github.com/muhammadhammad5/gofpdf
 ```
 
 Later, to receive updates, run
 
 ``` shell
-go get -u -v github.com/jung-kurt/gofpdf/...
+go get -u -v github.com/muhammadhammad5/gofpdf/...
 ```
 
 ## Quick Start
@@ -71,7 +71,7 @@ err := pdf.OutputFileAndClose("hello.pdf")
 ```
 
 See the functions in the
-[fpdf\_test.go](https://github.com/jung-kurt/gofpdf/blob/master/fpdf_test.go)
+[fpdf\_test.go](https://github.com/muhammadhammad5/gofpdf/blob/master/fpdf_test.go)
 file (shown as examples in this documentation) for more advanced PDF
 examples.
 
@@ -119,7 +119,7 @@ the tests complete.
 
 Please note that these examples run in the context of a test. In order
 run an example as a standalone application, you’ll need to examine
-[fpdf\_test.go](https://github.com/jung-kurt/gofpdf/blob/master/fpdf_test.go)
+[fpdf\_test.go](https://github.com/muhammadhammad5/gofpdf/blob/master/fpdf_test.go)
 for some helper routines, for example `exampleFilename()` and
 `summary()`.
 
@@ -190,7 +190,7 @@ Here are guidelines for making submissions. Your change should
   - be properly documented
   - be formatted with `go fmt`
   - include an example in
-    [fpdf\_test.go](https://github.com/jung-kurt/gofpdf/blob/master/fpdf_test.go)
+    [fpdf\_test.go](https://github.com/muhammadhammad5/gofpdf/blob/master/fpdf_test.go)
     if appropriate
   - conform to the standards of [golint](https://github.com/golang/lint)
     and [go vet](https://golang.org/cmd/vet/), that is, `golint .` and
@@ -202,11 +202,13 @@ are the preferred means of accepting your changes.
 
 ## License
 
-gofpdf is released under the MIT License. It is copyrighted by Kurt Jung
-and the contributors acknowledged below.
+gofpdf is released under the MIT License.
+Copyright (c) 2024 Muhammad Hammad
+Original work copyrighted by Kurt Jung.
 
 ## Acknowledgments
 
+Thank you to Kurt Jung who originally wrote gofpdf in 2013 - 2019.
 This package’s code and documentation are closely derived from the
 [FPDF](http://www.fpdf.org/) library created by Olivier Plathey, and a
 number of font and image resources are copied directly from it. Bruno
