@@ -12,23 +12,50 @@ import (
 // vertical placement purposes.
 func (f *Fpdf) SplitText(txt string, w float64) (lines []string) {
 	cw := f.currentFont.Cw
+	if cw == nil || len(cw) == 0 {
+		// No width table? Fall back to a single line.
+		return []string{txt}
+	}
+
 	wmax := int(math.Ceil((w - 2*f.cMargin) * 1000 / f.fontSize))
-	s := []rune(txt) // Return slice of UTF-8 runes
+
+	// Convert to runes and trim trailing newlines (preserve behavior).
+	s := []rune(txt)
 	nb := len(s)
 	for nb > 0 && s[nb-1] == '\n' {
 		nb--
 	}
-	s = s[0:nb]
+	s = s[:nb]
+
+	// Normalize runes for 8-bit width table:
+	// - NBSP -> regular space
+	// - any rune outside cw's range -> '?'
+	for i, r := range s {
+		switch r {
+		case '\u00A0': // NBSP
+			s[i] = ' '
+		default:
+			if int(r) < 0 || int(r) >= len(cw) {
+				s[i] = '?'
+			}
+		}
+	}
+
 	sep := -1
 	i := 0
 	j := 0
 	l := 0
-	for i < nb {
+
+	for i < len(s) {
 		c := s[i]
-		l += cw[c]
+
+		// Safe: c is normalized to be within cw's range.
+		l += cw[int(c)]
+
 		if unicode.IsSpace(c) || isChinese(c) {
 			sep = i
 		}
+
 		if c == '\n' || l > wmax {
 			if sep == -1 {
 				if i == j {
@@ -46,6 +73,7 @@ func (f *Fpdf) SplitText(txt string, w float64) (lines []string) {
 			i++
 		}
 	}
+
 	if i != j {
 		lines = append(lines, string(s[j:i]))
 	}
